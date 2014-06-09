@@ -1,0 +1,44 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+repositories {
+	mavenLocal()
+	maven { url "http://repo.spring.io/release" }
+	maven { url "http://repo.spring.io/milestone" }
+	//maven { url "http://repo.spring.io/snapshot" }
+	maven { url "http://maven.oschina.net/content/groups/public" }
+	mavenCentral()
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
+	//compile("org.springframework.boot:spring-boot-starter-jdbc")
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+	compile("mysql:mysql-connector-java:5.1.27")
+
+	compile("org.thymeleaf:thymeleaf-spring4")
+	compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+	
+	compile("org.springframework.boot:spring-boot-starter-tomcat")
+    
+	compile("org.springframework.boot:spring-boot-actuator")
+    //compile("org.springframework.boot:spring-boot-starter-remote-shell")
+}
+
+buildscript {
+	repositories {
+		mavenLocal()
+		maven { url "http://repo.spring.io/release" }
+		maven { url "http://repo.spring.io/milestone" }
+		//maven { url "http://repo.spring.io/snapshot" }
+		maven { url "http://maven.oschina.net/content/groups/public" }
+		mavenCentral()
+	}
+	dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE") }
+}
+
+tasks.withType(Compile) { options.encoding = "UTF-8" }
