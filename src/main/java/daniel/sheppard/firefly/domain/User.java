@@ -7,27 +7,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -5454433185564043985L;
 
 	@Id
-	@GeneratedValue
-	private Long id;
+	@GenericGenerator(name="idGenerator", strategy="uuid")
+	@GeneratedValue(generator="idGenerator")
+	@Column(length = 32)
+	private String id;
 
-	@Column(nullable = false)
+	@Column(length = 50,nullable = false)
 	private String name;
 
-	public Long getId() {
-		return id;
-	}
+	@Column(length = 50,nullable = false)
+    private String loginName;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@Column(length = 50,nullable = false)
+    private String loginPassWord;
 
-	public String getName() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
 		return name;
 	}
 
@@ -35,7 +45,23 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	@Override
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+
+    public String getLoginPassWord() {
+        return loginPassWord;
+    }
+
+    public void setLoginPassWord(String loginPassWord) {
+        this.loginPassWord = loginPassWord;
+    }
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

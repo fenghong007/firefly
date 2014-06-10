@@ -35,6 +35,8 @@ public class IndexController {
 	public User saveUser(String name) {
 		User user = new User();
 		user.setName(name);
+		user.setLoginName("firefly");
+		user.setLoginPassWord("firefly");
 		userService.saveUser(user);
 		return user;
 	}
